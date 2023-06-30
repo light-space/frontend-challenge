@@ -1,14 +1,14 @@
 # Workflow challenge
 
-At Light, we want to implement the best in class approval workflows. One example of that is when our customers onboard a new vendor. Before the vendor can be used, it needs to go through a series of checks and approvals by different people in their organization.
+At Light, we want to implement the best in class approval workflow. One example of that is when our customers onboard a new vendor. Before the vendor can be used, it needs to go through a series of checks and approvals by different people in the organization.
 
-To support that we want to build an UI that can help them create and visualize those workflows. 
+To support that we want to build a UI that can help them create and visualize those workflows. 
 
 For this challenge we are providing a design of what this workflow should look like and we want you to implement the code to display it.
 
 ![challenge design](/design.png)
 
-*desing.png*
+*design.png*
 
 ## Challenge requirements
 
@@ -19,13 +19,13 @@ This is the list of things you should provide:
 
 2. The logic to fetch the data and render the workflow.
     - Please don't use any external libraries to render the workflow, we want to see how you would implement this part.
-    - The three dots menu in the desing (`...`) doesn't do anything, just rendering it there is fine.
+    - The three dots menu in the design (`...`) doesn't do anything, just rendering it there is fine.
 
 Don't worry about making it pixel perfect or matching the icons and colours exacly. We know working against a png file is not ideal.
 
 The icons you see in the image come from the lucide library. The `lucide-react` package is already installed in the project.
 
-Any other consideration and things you would do better/different in a real world scenario feel free to put in the README, no need to implement it.
+For any other consideration or thing you would do better/differently in a real world scenario, feel free to put it in the README, no need to implement it.
 
 ## Provided code
 
