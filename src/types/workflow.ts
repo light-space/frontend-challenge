@@ -1,48 +1,46 @@
-import { Approver, AutoApprover } from "./approver";
+import { Approver } from "./approver";
 import { Category } from "./category";
 
 /**
- * Contains current state node within a workflow.
+ * Contains information about a node within a workflow.
  */
 export interface WorkflowNode {
   title: string;
   description: string;
   approverList: Approver[];
-  next: WorkflowNode[] | null;
   category: Category;
-  // other info such as: isApproved, notificationEmail, canBeSkipped, etc.
 }
+export type WorkflowNodes = WorkflowNode[];
+
+/**
+ * Workflow Level which contains Workflow Nodes that can be approved in parallel.
+ */
+export interface WorkflowLevel {
+  nodes: WorkflowNodes;
+  next: WorkflowLevel | null;
+}
+export type WorkflowLevels = WorkflowLevel[];
 
 /**
  * Contains all information related to a workflow.
  */
 export class Workflow {
-  head: WorkflowNode;
-  levels: WorkflowNode[][];
+  startingLevel: WorkflowLevel;
 
-  constructor(head: WorkflowNode) {
-    this.head = head;
-    this.levels = [[head]];
+  constructor(nodes: WorkflowNodes) {
+    this.startingLevel = { nodes, next: null };
   }
 
-  addNext(newWorkflowNodes: WorkflowNode[]) {
-    // retrieve the latest workflow nodes (that last ones on the same level)
-    const latestWorkflowNodes = this.levels.at(-1);
-
-    // copy new nodes in a new array for memory safety
-    const nextWorkflowNodes = [...newWorkflowNodes];
-
-    // add new nodes
-    latestWorkflowNodes?.forEach((workflowNode) => {
-      workflowNode.next = nextWorkflowNodes;
-    });
-    this.levels.push(nextWorkflowNodes);
+  addNext(nodes: WorkflowNodes) {
+    const newLevel: WorkflowLevel = { nodes, next: null };
+    this.getLastLevel().next = newLevel;
   }
 
-  getStepNodes(step: number) {
-    const node = this.head;
-    while (node) {}
+  getLastLevel(): WorkflowLevel {
+    let lastLevel = this.startingLevel;
+    while (lastLevel.next) {
+      lastLevel = lastLevel.next;
+    }
+    return lastLevel;
   }
-
-  // other methods, like isComplete for validating if it's completed
 }

@@ -1,16 +1,12 @@
-import { WorkflowNode } from "@/types/workflow";
-import {
-  MoreHorizontal,
-  UserCircle,
-  Wrench,
-} from "lucide-react";
 import React from "react";
+import { WorkflowNode } from "@/types/workflow";
+import { MoreHorizontal } from "lucide-react";
 import CategoryIcon from "./CategoryIcon";
 import ApproverBadge from "./ApproverBadge";
 
 // Note: still unsure if I should split into multiple components and maybe create
 // a "features" folder for this Card component where I add them.
-// Same for "Workflow Level" and "WorkflowActor"
+// Same for "WorkflowLevel" and "ApproverBadge"
 
 function WorkflowCard({
   title,
@@ -38,10 +34,10 @@ function WorkflowCard({
         </div>
       </div>
 
-      {/* Badges */}
+      {/* Approver Badges */}
       <div className="flex">
         {approverList.map((approver, index) => (
-          <ApproverBadge approver={approver} />
+          <ApproverBadge approver={approver} key={index} />
         ))}
       </div>
     </div>

@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import {
   contractExecution,
   fpa,
@@ -15,7 +14,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Workflow>
 ) {
-  const workflow = new Workflow(fpa);
+  const workflow = new Workflow([fpa]);
   workflow.addNext([itReview, securityReview, legalReview]);
   workflow.addNext([vendorOnboarding]);
   workflow.addNext([contractExecution, po]);

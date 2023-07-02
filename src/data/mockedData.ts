@@ -14,7 +14,6 @@ export const fpa: WorkflowNode = {
       name: "Kristin Watson",
     },
   ],
-  next: null,
   category: Category.Financial,
 };
 
@@ -27,7 +26,6 @@ export const itReview: WorkflowNode = {
       name: "Alice Weather",
     },
   ],
-  next: null,
   category: Category.IT,
 };
 
@@ -40,7 +38,6 @@ export const securityReview: WorkflowNode = {
       name: "Darlene Robertson",
     },
   ],
-  next: null,
   category: Category.Security,
 };
 
@@ -53,7 +50,6 @@ export const legalReview: WorkflowNode = {
       name: "Darlene Johnson",
     },
   ],
-  next: null,
   category: Category.Legal,
 };
 
@@ -65,7 +61,6 @@ export const vendorOnboarding: WorkflowNode = {
       type: ApproverTypes.Auto,
     },
   ],
-  next: null,
   category: Category.Vendor,
 };
 
@@ -78,7 +73,6 @@ export const contractExecution: WorkflowNode = {
       macro: MacroTypes.RequestOwner,
     },
   ],
-  next: null,
   category: Category.Requester,
 };
 
@@ -91,6 +85,5 @@ export const po: WorkflowNode = {
       macro: MacroTypes.Organization,
     },
   ],
-  next: null,
   category: Category.ProjectOwner,
 };

@@ -1,24 +1,23 @@
-import WorkflowCard from "@/components/WorkflowCard";
-import { Workflow, WorkflowNode } from "@/types/workflow";
+import { Workflow, WorkflowLevels } from "@/types/workflow";
 import { Inter } from "next/font/google";
 import { useQuery } from "@tanstack/react-query";
 import Suspense from "@/components/Suspense";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import WorkflowLevel from "@/components/WorkflowLevel";
+import { getWorkflowLevels } from "@/utils/workflow";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const fetchWorkflowSteps = async () => {
+async function fetchWorkflowNodeGroups(): Promise<WorkflowLevels> {
   const response = await fetch("/api/workflows");
   const workflow: Workflow = await response.json();
-  // await new Promise((r) => setTimeout(r, 500));
-  return workflow;
-};
+  return getWorkflowLevels(workflow);
+}
 
 export default function Home() {
-  const { data: workflow, isFetching } = useQuery({
+  const { data: workflowLevels, isFetching } = useQuery({
     queryKey: ["workflow"],
-    queryFn: fetchWorkflowSteps,
+    queryFn: fetchWorkflowNodeGroups,
   });
 
   return (
@@ -30,10 +29,10 @@ export default function Home() {
         fallback={<LoadingSpinner />}
       >
         <div className="flex items-center justify-center">
-          {workflow?.levels?.map((workflowNodes, index) => (
+          {workflowLevels?.map((workflowLevel, index) => (
             <WorkflowLevel
-              workflowNodes={workflowNodes}
-              level={index}
+              workflowLevel={workflowLevel}
+              levelNumber={index}
               key={index}
             />
           ))}
