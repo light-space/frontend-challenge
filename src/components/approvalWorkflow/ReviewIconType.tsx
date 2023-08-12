@@ -10,7 +10,7 @@ import {
   Shield,
   Wrench,
 } from "lucide-react";
-import { TReviewType } from "./types";
+import { TReviewType } from "../../types";
 
 interface IconProps extends LucideProps {
   type: TReviewType;

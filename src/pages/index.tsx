@@ -1,5 +1,5 @@
-import { WorkflowContainer } from "@/components/approvalWorkflow/WorkflowContainer";
 import { Inter } from "next/font/google";
+import { WorkflowContainer } from "@/components/approvalWorkflow/WorkflowContainer";
 
 const inter = Inter({ subsets: ["latin"] });
 

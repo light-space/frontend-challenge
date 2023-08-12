@@ -1,5 +1,5 @@
 import { User2 } from "lucide-react";
-import { TStepItem } from "./types";
+import { TStepItem } from "../../types";
 
 export function UserBadge({ assignee }: { assignee: TStepItem["assignee"] }) {
   if (assignee == null) {

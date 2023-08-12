@@ -1,6 +1,6 @@
 import { MoreHorizontal } from "lucide-react";
 import { ReviewIconType } from "./ReviewIconType";
-import { TStepItem } from "./types";
+import { TStepItem } from "../../types";
 import { UserBadge } from "./UserBadge";
 
 type WorkflowItemProps = {

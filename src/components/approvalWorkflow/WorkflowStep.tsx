@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { WorkflowItem } from "./WorkflowItem";
-import { TStepItem } from "./types";
+import { TStepItem } from "../../types";
 import { buildWorkflowItemStyles } from "./buildWorkflowItemStyles";
 
 type WorkflowStepProps = {

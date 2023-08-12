@@ -1,118 +1,38 @@
+import { useEffect, useMemo, useState } from "react";
 import { WorkflowStep } from "./WorkflowStep";
-import { TStepItem } from "./types";
+import { TStepItem } from "../../types";
 import styles from "./styles.module.css";
-import { useMemo } from "react";
-
-const data: TStepItem[] = [
-  {
-    id: "uuid1",
-    name: "FP&A",
-    reviewInfo: {
-      description: "Assessment of cost-benefit",
-      type: "cost",
-    },
-    stepIndex: 0,
-    stepOrder: 0,
-    assignee: {
-      id: "user id",
-      name: "Kristin Watson",
-    },
-  },
-  {
-    id: "uuid2",
-    name: "IT Review",
-    reviewInfo: {
-      description: "Assessment of IT risks",
-      type: "it",
-    },
-    stepIndex: 1,
-    stepOrder: 0,
-    assignee: {
-      id: "user id 2",
-      name: "Alice Weather",
-    },
-  },
-  {
-    id: "uuid3",
-    name: "Security Review",
-    reviewInfo: {
-      description: "Assessment of security risks",
-      type: "security",
-    },
-    stepIndex: 1,
-    stepOrder: 1,
-    assignee: {
-      id: "user id 3",
-      name: "Darlene Robertson",
-    },
-  },
-  {
-    id: "uuid4",
-    name: "Legal Review",
-    reviewInfo: {
-      description: "Assessment of legal risks",
-      type: "legal",
-    },
-    stepIndex: 1,
-    stepOrder: 2,
-    assignee: {
-      id: "user id 3",
-      name: "Darlene Johnson",
-    },
-  },
-  {
-    id: "uuid5",
-    name: "Vendor onboarding",
-    reviewInfo: {
-      description: "Vendor created in EPR",
-      type: "created-in-erp",
-    },
-    stepIndex: 2,
-    stepOrder: 0,
-    assignee: null,
-  },
-  {
-    id: "uuid6",
-    name: "Contract Execution",
-    reviewInfo: {
-      description: "Aligned contract",
-      type: "aligned-contract",
-    },
-    stepIndex: 3,
-    stepOrder: 0,
-    assignee: {
-      id: "user id 12",
-      name: "Request Owner",
-    },
-  },
-  {
-    id: "uuid7",
-    name: "PO",
-    reviewInfo: {
-      description: "Order service",
-      type: "order-service",
-    },
-    stepIndex: 3,
-    stepOrder: 1,
-    assignee: {
-      id: "user id 432",
-      name: "Organisation",
-    },
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { fetchWorkflowItems } from "@/services/fetchWorkflowItems";
 
 export function WorkflowContainer() {
-  const stepsMap = generateStepsMap(data);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["workflowItems"],
+    queryFn: () => fetchWorkflowItems(),
+  });
+
+  const stepsMap = !isLoading && data != null ? generateStepsMap(data) : null;
 
   const steps = useMemo(() => {
+    if (stepsMap == null) {
+      return [];
+    }
     return Array.from(stepsMap);
   }, [stepsMap]);
+
+  if (isLoading) {
+    return "Loading...";
+  }
+
+  if (error) {
+    return "Something went wrong :(";
+  }
 
   return (
     <div className={styles.stepContainer}>
       {steps.map((_, index) => {
-        const items = stepsMap.get(index);
-        const nextColumnsItems = stepsMap.get(index + 1);
+        const items = stepsMap?.get(index);
+        const nextColumnsItems = stepsMap?.get(index + 1);
 
         return (
           <WorkflowStep
