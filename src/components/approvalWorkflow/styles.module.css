@@ -5,9 +5,10 @@
 }
 
 .item {
-  @apply bg-black-925 rounded-xl p-4 relative;
+  @apply bg-black-925 rounded-xl p-4 relative border-solid border-2 border-gray-125;
   width: var(--card-width);
   height: var(--card-height);
+
 }
 
 .rightLine::after {

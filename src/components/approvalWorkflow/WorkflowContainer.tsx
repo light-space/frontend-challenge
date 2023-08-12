@@ -105,7 +105,7 @@ export function WorkflowContainer() {
   const steps = Array.from(stepsMap);
 
   return (
-    <div className="flex" style={{ gap: "5rem" }}>
+    <div className="flex" style={{ gap: "74px" }}>
       {steps.map((_, index) => (
         <WorkflowStep
           key={`WorkflowStep_${index}`}

@@ -1,15 +1,7 @@
+import { useMemo } from "react";
 import { WorkflowItem } from "./WorkflowItem";
 import { TStepItem } from "./types";
-import styles from "./styles.module.css";
-
-/**
- * Drawing lines rules:
- * - if stepIndex zero and single item: render line to the right
- * - if stepIndex > zero and multiple items: render square to the left
- *    - if more columns to right also render square to right
- * - if stepIndex > zero and single item: render line to the left
- *    - if more column to right also render line to the right
- */
+import { buildWorkflowItemStyles } from "./buildWorkflowItemStyles";
 
 type WorkflowStepProps = {
   currentStepIndex: number;
@@ -25,34 +17,20 @@ export function WorkflowStep({
   const nextColumnsItems = stepsMap.get(currentStepIndex + 1);
   const nextColumnSize = nextColumnsItems?.length ?? 0;
 
-  let styleClass = styles.item;
-  if (currentStepIndex > 0) {
-    styleClass = `${styleClass} ${styles.leftLine}`;
-  }
-
-  if (currentStepIndex > 0 && nextColumnSize > 1) {
-    styleClass = `${styleClass} ${styles.rightLine}`;
-  }
-
-  if (currentStepIndex === 0 && currentColumnSize === 1) {
-    styleClass = `${styleClass} ${styles.rightLine}`;
-  }
-
-  if (currentStepIndex > 0 && nextColumnSize > 1) {
-    styleClass = `${styleClass} ${styles.rightLine}`;
-  }
-
-  if (currentStepIndex > 0 && currentColumnSize > 1) {
-    styleClass = `${styleClass} ${styles.decorateLeft}`;
-    if (nextColumnsItems) {
-      styleClass = `${styleClass} ${styles.decorateRight}`;
-    }
-  }
+  const stylesClasses = useMemo(
+    () =>
+      buildWorkflowItemStyles({
+        currentStepIndex,
+        currentColumnSize,
+        nextColumnSize,
+      }),
+    [currentStepIndex, currentColumnSize, nextColumnSize]
+  );
 
   return (
     <div className="flex flex-col justify-center" style={{ gap: "4rem" }}>
       {items?.map((item) => (
-        <WorkflowItem key={item.id} item={item} className={styleClass} />
+        <WorkflowItem key={item.id} item={item} className={stylesClasses} />
       ))}
     </div>
   );
