@@ -105,14 +105,20 @@ export function WorkflowContainer() {
   const steps = Array.from(stepsMap);
 
   return (
-    <div className="flex" style={{ gap: "74px" }}>
-      {steps.map((_, index) => (
-        <WorkflowStep
-          key={`WorkflowStep_${index}`}
-          currentStepIndex={index}
-          stepsMap={stepsMap}
-        />
-      ))}
+    <div className={styles.stepContainer}>
+      {steps.map((_, index) => {
+        const items = stepsMap.get(index);
+        const nextColumnsItems = stepsMap.get(index + 1);
+
+        return (
+          <WorkflowStep
+            key={`WorkflowStep_${index}`}
+            currentStepIndex={index}
+            items={items}
+            nextColumnsItems={nextColumnsItems}
+          />
+        );
+      })}
     </div>
   );
 }

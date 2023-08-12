@@ -5,16 +5,16 @@ import { buildWorkflowItemStyles } from "./buildWorkflowItemStyles";
 
 type WorkflowStepProps = {
   currentStepIndex: number;
-  stepsMap: Map<number, Array<TStepItem>>;
+  items: TStepItem[];
+  nextColumnsItems: TStepItem[];
 };
 
 export function WorkflowStep({
   currentStepIndex,
-  stepsMap,
+  items,
+  nextColumnsItems,
 }: WorkflowStepProps) {
-  const items = stepsMap.get(currentStepIndex);
   const currentColumnSize = items?.length ?? 0;
-  const nextColumnsItems = stepsMap.get(currentStepIndex + 1);
   const nextColumnSize = nextColumnsItems?.length ?? 0;
 
   const stylesClasses = useMemo(

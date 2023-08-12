@@ -1,4 +1,9 @@
 
+.stepContainer {
+  @apply flex;
+  gap: 74px;
+}
+
 .columnContainer {
   @apply flex flex-col justify-center;
   gap: var(--column-gap);
@@ -8,7 +13,6 @@
   @apply bg-black-925 rounded-xl p-4 relative border-solid border-2 border-gray-125;
   width: var(--card-width);
   height: var(--card-height);
-
 }
 
 .rightLine::after {
