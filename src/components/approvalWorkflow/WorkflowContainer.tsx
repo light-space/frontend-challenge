@@ -100,16 +100,19 @@ const schema: TStepItem[] = [
   },
 ];
 
-export function ApprovalWorkflowContainer() {
+export function WorkflowContainer() {
   const stepsMap = generateStepsMap(schema);
   const steps = Array.from(stepsMap);
 
   return (
     <div className="flex" style={{ gap: "5rem" }}>
-      {steps.map((_, index) => {
-        const items: TStepItem[] = stepsMap.get(index);
-        return <WorkflowStep key={`WorkflowStep_${index}`} items={items} />;
-      })}
+      {steps.map((_, index) => (
+        <WorkflowStep
+          key={`WorkflowStep_${index}`}
+          currentStepIndex={index}
+          stepsMap={stepsMap}
+        />
+      ))}
     </div>
   );
 }

@@ -1,6 +1,67 @@
 
+.columnContainer {
+  @apply flex flex-col justify-center;
+  gap: var(--column-gap);
+}
 
-.container {
-  display: flex;
+.item {
+  @apply bg-black-925 rounded-xl p-4 relative;
+  width: var(--card-width);
+  height: var(--card-height);
+}
 
+.rightLine::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--line-width));
+  transform: translate(0, -50%);
+  width: var(--line-width);
+  height: 2px;
+  @apply bg-gray-925;
+}
+
+.leftLine::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--line-width));
+  transform: translate(0, -50%);
+  width: var(--line-width);
+  height: 2px;
+  @apply bg-gray-925;
+}
+
+.decorateLeft:not(:last-of-type)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--line-width));
+  transform: translate(0, 0%);
+  width: var(--line-width);
+  height: calc(var(--card-height) + var(--column-gap) + var(--border-offset));
+  background-color: transparent;
+  @apply border-gray-925 border-l-2 border-b-2;
+}
+
+/* Apply top border only to the first element */
+.decorateLeft:first-of-type::before {
+  @apply border-t-2;
+}
+
+.decorateRight:not(:last-of-type)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--line-width));
+  transform: translate(0, 0%);
+  width: var(--line-width);
+  height: calc(var(--card-height) + var(--column-gap) + var(--border-offset));
+  background-color: white;
+  background-color: transparent;
+  @apply border-gray-925 border-r-2 border-b-2;
+}
+/* Apply top border only to the first element */
+.decorateRight:first-of-type::after {
+  @apply border-t-2;
 }

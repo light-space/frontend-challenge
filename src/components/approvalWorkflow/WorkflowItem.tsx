@@ -1,12 +1,11 @@
 import { TStepItem } from "./types";
+import { HTMLAttributes } from "react";
 
-export function WorkflowItem({ item }: { item: TStepItem }) {
-  return (
-    <div
-      className="bg-black-925 rounded-xl p-4"
-      style={{ width: "213px", height: "177px" }}
-    >
-      {item.name}
-    </div>
-  );
+type WorkflowItemProps = {
+  item: TStepItem;
+  className?: HTMLAttributes<HTMLDivElement>["className"];
+};
+
+export function WorkflowItem({ item, className }: WorkflowItemProps) {
+  return <div className={className}>{item.name}</div>;
 }

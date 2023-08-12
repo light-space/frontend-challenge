@@ -6,6 +6,11 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --line-width: 40px;
+  --card-width: 213px;
+  --card-height: 177px;
+  --column-gap: 64px;
+  --border-offset: 1px;
 }
 
 @media (prefers-color-scheme: dark) {
