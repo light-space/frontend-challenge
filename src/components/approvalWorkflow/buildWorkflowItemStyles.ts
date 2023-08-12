@@ -1,13 +1,17 @@
 import styles from "./styles.module.css";
 
 /**
- * Drawing lines rules:
+ * 'Initial' Drawing lines rules:
  * - when stepIndex zero and single item: render line to the right
  * - when stepIndex > zero and multiple items: render square to the left
  *    - when more columns to right also render square to right
  * - when stepIndex > zero and single item: render line to the left
  *    - when more column to right also render line to the right
  */
+
+// const currentStepIndex = 1;
+//     const currentColumnSize = 2;
+//     const nextColumnSize = 3;
 
 export function buildWorkflowItemStyles({
   currentStepIndex,
@@ -41,6 +45,10 @@ export function buildWorkflowItemStyles({
     if (nextColumnSize) {
       stylesClasses = `${stylesClasses} ${styles.decorateRight}`;
     }
+  }
+
+  if (currentStepIndex === 0 && currentColumnSize > 1) {
+    stylesClasses = `${stylesClasses} ${styles.decorateRight}`;
   }
 
   return stylesClasses;

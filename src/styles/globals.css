@@ -30,3 +30,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+ul {
+  list-style-type: none;
+}

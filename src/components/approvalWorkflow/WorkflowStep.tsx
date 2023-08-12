@@ -28,10 +28,10 @@ export function WorkflowStep({
   );
 
   return (
-    <div className="flex flex-col justify-center" style={{ gap: "4rem" }}>
+    <ul className="flex flex-col justify-center" style={{ gap: "4rem" }}>
       {items?.map((item) => (
         <WorkflowItem key={item.id} item={item} className={stylesClasses} />
       ))}
-    </div>
+    </ul>
   );
 }

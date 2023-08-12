@@ -8,7 +8,7 @@ import { fetchWorkflowItems } from "@/services/fetchWorkflowItems";
 export function WorkflowContainer() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["workflowItems"],
-    queryFn: () => fetchWorkflowItems(),
+    queryFn: fetchWorkflowItems,
   });
 
   const stepsMap = !isLoading && data != null ? generateStepsMap(data) : null;

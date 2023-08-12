@@ -10,7 +10,7 @@ type WorkflowItemProps = {
 
 export function WorkflowItem({ item, className }: WorkflowItemProps) {
   return (
-    <div className={className}>
+    <li className={className} tabIndex={0}>
       <div className="flex flex-col h-full">
         <div className="flex">
           <ReviewIconType type={item.reviewInfo.type} />
@@ -26,6 +26,6 @@ export function WorkflowItem({ item, className }: WorkflowItemProps) {
           <UserBadge assignee={item.assignee} />
         </div>
       </div>
-    </div>
+    </li>
   );
 }
