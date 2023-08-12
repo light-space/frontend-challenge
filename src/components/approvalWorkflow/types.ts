@@ -12,7 +12,7 @@ type TReviewInfo = {
   type: TReviewType;
 };
 
-type TStepItemAssignee = {
+export type TStepItemAssignee = {
   id: string;
   name: string;
 };

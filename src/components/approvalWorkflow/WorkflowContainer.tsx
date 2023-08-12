@@ -1,8 +1,9 @@
 import { WorkflowStep } from "./WorkflowStep";
 import { TStepItem } from "./types";
 import styles from "./styles.module.css";
+import { useMemo } from "react";
 
-const schema: TStepItem[] = [
+const data: TStepItem[] = [
   {
     id: "uuid1",
     name: "FP&A",
@@ -101,8 +102,11 @@ const schema: TStepItem[] = [
 ];
 
 export function WorkflowContainer() {
-  const stepsMap = generateStepsMap(schema);
-  const steps = Array.from(stepsMap);
+  const stepsMap = generateStepsMap(data);
+
+  const steps = useMemo(() => {
+    return Array.from(stepsMap);
+  }, [stepsMap]);
 
   return (
     <div className={styles.stepContainer}>
