@@ -9,10 +9,6 @@ import styles from "./styles.module.css";
  *    - when more column to right also render line to the right
  */
 
-// const currentStepIndex = 1;
-//     const currentColumnSize = 2;
-//     const nextColumnSize = 3;
-
 export function buildWorkflowItemStyles({
   currentStepIndex,
   currentColumnSize,
