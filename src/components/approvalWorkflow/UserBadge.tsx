@@ -5,7 +5,7 @@ export function UserBadge({ assignee }: { assignee: TStepItem["assignee"] }) {
   if (assignee == null) {
     return (
       <UserAvatarBadge name="Auto">
-        <div className="rounded-full bg-black-925 p-1 h-5 w-5 inline-flex justify-center items-center">
+        <div className="rounded-full bg-black p-1 h-5 w-5 inline-flex justify-center items-center">
           N
         </div>
       </UserAvatarBadge>

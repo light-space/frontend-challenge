@@ -1,4 +1,4 @@
-type TReviewType =
+export type TReviewType =
   | "cost"
   | "it"
   | "security"
