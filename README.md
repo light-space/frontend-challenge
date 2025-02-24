@@ -37,3 +37,8 @@ We provide a basic setup with NextJS, Typescript and tailwind. This is just a su
 npm install
 npm run dev
 ```
+
+### Submitting your implementation
+
+1. Run `git bundle create challenge-<your-name>.bundle --all`
+2. Send us the generated bundle file
